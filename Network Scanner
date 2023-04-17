@@ -1,0 +1,14 @@
+import nmap
+
+scanner = nmap.PortScanner()
+
+ip_address = input("Enter the IP address: ")
+scanner.scan(ip_address, '1-65535')
+
+for host in scanner.all_hosts():
+    print(f"Host: {host} ({scanner[host].hostname()})")
+    for proto in scanner[host].all_protocols():
+        print(f"Protocol: {proto}")
+        ports = scanner[host][proto].keys()
+        for port in ports:
+            print(f"Port: {port} ({scanner[host][proto][port]['name']}) - State: {scanner[host][proto][port]['state']}")
