@@ -1,0 +1,16 @@
+import hashlib
+
+def calculate_file_hash(file_path):
+    with open(file_path, 'rb') as file:
+        content = file.read()
+        hash = hashlib.sha256(content).hexdigest()
+        return hash
+
+file_path = input("Enter the file path: ")
+original_hash = calculate_file_hash(file_path)
+print(f"Original file hash: {original_hash}")
+
+# Modify the file
+
+modified_hash = calculate_file_hash(file_path)
+print(f"Modified file hash: {modified_hash}")
